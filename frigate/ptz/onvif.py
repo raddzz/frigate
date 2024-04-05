@@ -320,12 +320,6 @@ class OnvifController:
         self.cams[camera_name]["active"] = False
 
     def _move(self, camera_name: str, command: OnvifCommandEnum) -> None:
-        if self.cams[camera_name]["active"]:
-            logger.warning(
-                f"{camera_name} is already performing an action, stopping..."
-            )
-            self._stop(camera_name)
-
         self.cams[camera_name]["active"] = True
         onvif: ONVIFCamera = self.cams[camera_name]["onvif"]
         move_request = self.cams[camera_name]["move_request"]
